@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kalinga Creators Summit - Odisha's First Creator Mega Event</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+
+    html {
+      height: 100%;
+      overflow-x: hidden;
+    }
+
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #000000;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      position: relative;
+      overflow-x: hidden;
+      overflow-y: auto;
+      padding: 40px 20px;
+    }
+
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: 
+        radial-gradient(circle at 15% 40%, rgba(212, 175, 55, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 85% 60%, rgba(212, 175, 55, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 50% 20%, rgba(255, 215, 0, 0.06) 0%, transparent 35%);
+      animation: meshMove 25s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+
+    @keyframes meshMove {
+      0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 0.8; }
+      33% { transform: translate(3%, -3%) rotate(2deg) scale(1.05); opacity: 1; }
+      66% { transform: translate(-3%, 3%) rotate(-2deg) scale(0.95); opacity: 0.9; }
+    }
+
+
+    body::after {
+      content: '';
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-image: 
+        radial-gradient(circle, rgba(212, 175, 55, 0.2) 1.5px, transparent 1.5px),
+        radial-gradient(circle, rgba(255, 215, 0, 0.12) 1px, transparent 1px);
+      background-size: 180px 180px, 250px 250px;
+      background-position: 0 0, 70px 70px;
+      animation: particleFloat 80s linear infinite;
+      pointer-events: none;
+      opacity: 0.35;
+      z-index: 0;
+    }
+
+
+    @keyframes particleFloat {
+      0% { transform: translateY(0) translateX(0) rotate(0deg); }
+      100% { transform: translateY(-120px) translateX(60px) rotate(5deg); }
+    }
+
+
+    .ambient-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 0;
+      animation: orbFloat 18s ease-in-out infinite;
+    }
+
+
+    .ambient-orb-1 {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.18), transparent);
+      top: 5%;
+      right: 0%;
+    }
+
+
+    .ambient-orb-2 {
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(255, 215, 0, 0.12), transparent);
+      bottom: 10%;
+      left: 5%;
+      animation-delay: 6s;
+    }
+
+
+    .ambient-orb-3 {
+      width: 380px;
+      height: 380px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.04), transparent);
+      top: 45%;
+      left: 45%;
+      animation-delay: 12s;
+    }
+
+
+    @keyframes orbFloat {
+      0%, 100% { opacity: 0.4; transform: translate(0, 0) scale(1); }
+      50% { opacity: 0.7; transform: translate(30px, -30px) scale(1.15); }
+    }
+
+
+    .noise-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 500 500' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+
+    .scanlines {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.03) 0px, transparent 1px, transparent 2px, rgba(0, 0, 0, 0.03) 3px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.3;
+    }
+
+
+    .container {
+      background: rgba(12, 12, 12, 0.85);
+      backdrop-filter: blur(50px) saturate(200%);
+      padding: clamp(35px, 5vw, 65px) clamp(30px, 5vw, 55px);
+      border-radius: 12px;
+      border: 1.5px solid rgba(212, 175, 55, 0.15);
+      box-shadow: 
+        0 40px 80px rgba(0, 0, 0, 0.7),
+        0 0 100px rgba(212, 175, 55, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      width: 100%;
+      max-width: 540px;
+      position: relative;
+      z-index: 1;
+      animation: fadeInUp 1s ease-out;
+      margin: auto;
+    }
+
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+
+    .container::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 12px;
+      padding: 2px;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.3), transparent 30%, transparent 70%, rgba(255, 215, 0, 0.2));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0.5;
+      animation: borderGlow 4s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+
+    @keyframes borderGlow {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 0.8; }
+    }
+
+
+    .logo-container {
+      text-align: center;
+      margin-bottom: clamp(20px, 3vw, 25px);
+    }
+
+
+    .logo-wrapper {
+      display: inline-block;
+      padding: clamp(12px, 2.5vw, 18px);
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: clamp(18px, 3.5vw, 24px);
+      border: 1.5px solid rgba(212, 175, 55, 0.15);
+      transition: all 0.4s ease;
+      position: relative;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    }
+
+
+    .logo-wrapper:hover {
+      background: rgba(255, 255, 255, 0.06);
+      transform: translateY(-4px);
+      box-shadow: 0 15px 40px rgba(212, 175, 55, 0.15);
+    }
+
+
+    .logo-img {
+      width: clamp(80px, 20vw, 110px);
+      height: clamp(80px, 20vw, 110px);
+      object-fit: contain;
+      border-radius: clamp(14px, 3vw, 18px);
+      filter: drop-shadow(0 6px 15px rgba(212, 175, 55, 0.25));
+      animation: logoFloat 3.5s ease-in-out infinite;
+      display: block;
+    }
+
+
+    @keyframes logoFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+
+    .event-label {
+      font-family: 'Inter', sans-serif;
+      text-align: center;
+      color: #d4af37;
+      font-size: clamp(11px, 2.3vw, 13px);
+      font-weight: 600;
+      letter-spacing: clamp(1.5px, 0.4vw, 2.5px);
+      text-transform: uppercase;
+      margin: clamp(18px, 3vw, 24px) 0 clamp(12px, 2vw, 16px);
+      text-shadow: 0 2px 15px rgba(212, 175, 55, 0.3);
+    }
+
+
+    .logo-mark {
+      width: clamp(50px, 12vw, 70px);
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.5), transparent);
+      margin: clamp(15px, 3vw, 20px) auto;
+      position: relative;
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+    }
+
+
+    h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(26px, 5.5vw, 38px);
+      font-weight: 600;
+      color: #ffffff;
+      text-align: center;
+      margin-bottom: clamp(18px, 3vw, 24px);
+      letter-spacing: 1.2px;
+      line-height: 1.3;
+      text-shadow: 0 4px 25px rgba(212, 175, 55, 0.15);
+    }
+
+
+    .register-prompt {
+      font-family: 'Inter', sans-serif;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: clamp(13px, 2.8vw, 15px);
+      font-weight: 400;
+      line-height: 1.7;
+      margin-bottom: clamp(30px, 5vw, 40px);
+      padding: 0 clamp(10px, 2vw, 20px);
+    }
+
+
+    .register-prompt strong {
+      color: #d4af37;
+      font-weight: 600;
+    }
+
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(20px, 3.5vw, 28px);
+    }
+
+
+    .input-wrapper {
+      position: relative;
+    }
+
+
+    label {
+      display: block;
+      color: rgba(255, 255, 255, 0.55);
+      font-size: clamp(10px, 2vw, 11px);
+      font-weight: 500;
+      letter-spacing: clamp(1.2px, 0.3vw, 1.8px);
+      text-transform: uppercase;
+      margin-bottom: clamp(10px, 2vw, 12px);
+      transition: color 0.3s ease;
+    }
+
+
+    .input-wrapper:focus-within label {
+      color: #d4af37;
+    }
+
+
+    input {
+      width: 100%;
+      padding: clamp(12px, 2.5vw, 16px) 0;
+      background: transparent;
+      border: none;
+      border-bottom: 1.5px solid rgba(255, 255, 255, 0.12);
+      font-size: clamp(14px, 3vw, 16px);
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      transition: all 0.4s ease;
+      outline: none;
+    }
+
+
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.28);
+      font-weight: 300;
+    }
+
+
+    input:focus {
+      border-bottom-color: #d4af37;
+    }
+
+
+    .input-wrapper::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #d4af37, transparent);
+      transform: translateX(-50%);
+      transition: width 0.5s ease;
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+    }
+
+
+    .input-wrapper:focus-within::after {
+      width: 100%;
+    }
+
+
+    button {
+      margin-top: clamp(15px, 2.5vw, 20px);
+      padding: clamp(15px, 3vw, 18px) 0;
+      background: transparent;
+      border: 1.5px solid #d4af37;
+      color: #d4af37;
+      font-size: clamp(12px, 2.5vw, 14px);
+      font-weight: 600;
+      letter-spacing: clamp(2.5px, 0.6vw, 3.5px);
+      text-transform: uppercase;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      font-family: 'Inter', sans-serif;
+      border-radius: 6px;
+    }
+
+
+    button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
+      transition: left 0.7s ease;
+    }
+
+
+    button:hover::before {
+      left: 100%;
+    }
+
+
+    button::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background: linear-gradient(135deg, #d4af37, #f4d976, #d4af37);
+      transition: width 0.5s ease;
+      z-index: -1;
+    }
+
+
+    button:hover::after {
+      width: 100%;
+    }
+
+
+    button:hover {
+      color: #000000;
+      box-shadow: 0 0 50px rgba(212, 175, 55, 0.5);
+      transform: translateY(-3px);
+    }
+
+
+    button:active {
+      transform: translateY(-1px) scale(0.98);
+    }
+
+
+    button.loading {
+      pointer-events: none;
+      opacity: 0.7;
+    }
+
+
+    button.loading::after {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      top: 50%;
+      left: 50%;
+      margin-left: -9px;
+      margin-top: -9px;
+      border: 2.5px solid rgba(212, 175, 55, 0.3);
+      border-top-color: #d4af37;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+
+    .success-message {
+      text-align: center;
+      color: #d4af37;
+      font-size: clamp(13px, 2.5vw, 15px);
+      margin-top: 16px;
+      padding: 16px 18px;
+      background: rgba(212, 175, 55, 0.12);
+      border: 1.5px solid rgba(212, 175, 55, 0.25);
+      border-radius: 8px;
+      letter-spacing: 0.8px;
+      font-weight: 500;
+      box-shadow: 0 4px 20px rgba(212, 175, 55, 0.15);
+    }
+
+
+    /* Video Modal */
+    .video-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.97);
+      backdrop-filter: blur(10px);
+      z-index: 9999;
+      animation: fadeIn 0.4s ease-out;
+      overflow-y: auto;
+      padding: clamp(40px, 6vw, 80px) 20px;
+    }
+
+
+    .video-modal.show {
+      display: block;
+    }
+
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+
+    .video-modal-content {
+      width: 100%;
+      max-width: 900px;
+      position: relative;
+      animation: slideUp 0.5s ease-out;
+      margin: 0 auto;
+    }
+
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(60px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+
+    .video-modal-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+
+    .video-modal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(24px, 4.5vw, 36px);
+      color: #ffffff;
+      font-weight: 600;
+      text-shadow: 0 2px 20px rgba(212, 175, 55, 0.3);
+      margin-bottom: 10px;
+    }
+
+
+    .video-modal-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(13px, 2.8vw, 16px);
+      color: rgba(255, 255, 255, 0.6);
+      font-weight: 400;
+      letter-spacing: 0.5px;
+    }
+
+
+    .close-modal {
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1.5px solid rgba(212, 175, 55, 0.35);
+      color: #d4af37;
+      font-size: 32px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      padding: 0;
+      line-height: 1;
+      font-weight: 300;
+      z-index: 10;
+    }
+
+
+    .close-modal:hover {
+      background: rgba(212, 175, 55, 0.25);
+      transform: rotate(90deg) scale(1.1);
+      box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+    }
+
+
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 16px;
+      border: 2px solid rgba(212, 175, 55, 0.25);
+      box-shadow: 
+        0 25px 70px rgba(0, 0, 0, 0.8),
+        0 0 100px rgba(212, 175, 55, 0.2);
+      background: #000;
+      margin-bottom: 35px;
+    }
+
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 16px;
+    }
+
+
+    .cta-section {
+      background: rgba(15, 15, 15, 0.8);
+      border: 1.5px solid rgba(212, 175, 55, 0.2);
+      border-radius: 12px;
+      padding: clamp(28px, 4.5vw, 40px);
+      text-align: center;
+    }
+
+
+    .cta-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 4vw, 30px);
+      color: #d4af37;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+
+    .cta-price {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(15px, 3vw, 18px);
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 25px;
+      line-height: 1.6;
+    }
+
+
+    .cta-price strong {
+      color: #ffffff;
+      font-weight: 600;
+      font-size: clamp(18px, 3.5vw, 22px);
+    }
+
+
+    .cta-badge {
+      display: inline-block;
+      background: rgba(212, 175, 55, 0.15);
+      color: #d4af37;
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-size: clamp(12px, 2.2vw, 14px);
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      margin-bottom: 25px;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+    }
+
+
+    .cta-button {
+      display: inline-block;
+      background: linear-gradient(135deg, #d4af37, #f4d976);
+      color: #000000;
+      padding: clamp(16px, 3vw, 18px) clamp(35px, 5.5vw, 50px);
+      border-radius: 8px;
+      font-size: clamp(14px, 2.8vw, 16px);
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.4s ease;
+      box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+      margin-bottom: 25px;
+    }
+
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(212, 175, 55, 0.5);
+    }
+
+
+    .cta-whatsapp {
+      display: inline-block;
+      background: rgba(37, 211, 102, 0.15);
+      color: #25D366;
+      padding: clamp(14px, 2.8vw, 16px) clamp(30px, 5vw, 42px);
+      border-radius: 8px;
+      font-size: clamp(13px, 2.6vw, 15px);
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.4s ease;
+      border: 1.5px solid rgba(37, 211, 102, 0.3);
+      margin-bottom: 25px;
+      font-family: 'Inter', sans-serif;
+    }
+
+
+    .cta-whatsapp:hover {
+      background: rgba(37, 211, 102, 0.25);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(37, 211, 102, 0.3);
+      border-color: rgba(37, 211, 102, 0.5);
+    }
+
+
+    .cta-whatsapp::before {
+      content: "💬 ";
+      margin-right: 6px;
+    }
+
+
+    .cta-contact {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(13px, 2.5vw, 15px);
+      color: rgba(255, 255, 255, 0.5);
+      margin-top: 18px;
+    }
+
+
+    .cta-contact a {
+      color: #d4af37;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+
+    .cta-contact a:hover {
+      color: #f4d976;
+    }
+
+
+    .event-info {
+      text-align: center;
+      color: #ffffff;
+      font-size: clamp(13px, 2.5vw, 15px);
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      margin-top: 25px;
+      letter-spacing: 0.8px;
+      opacity: 0.8;
+    }
+
+
+    .event-highlights {
+      margin-top: 20px;
+      text-align: left;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+
+    .highlight-item {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: clamp(13px, 2.5vw, 15px);
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+
+    .tick {
+      color: #00ff00;
+      font-weight: bold;
+      margin-right: 8px;
+      font-size: clamp(14px, 2.8vw, 16px);
+    }
+
+
+    @media (max-width: 768px) {
+      .video-modal {
+        padding: 30px 15px;
+      }
+
+      .video-modal-content {
+        max-width: 100%;
+      }
+      
+      .close-modal {
+        width: 42px;
+        height: 42px;
+        font-size: 26px;
+        top: -12px;
+        right: -12px;
+      }
+      
+      .video-wrapper {
+        border-radius: 12px;
+        margin-bottom: 28px;
+      }
+
+      .video-modal-header {
+        margin-bottom: 25px;
+      }
+    }
+
+
+    @media (max-width: 480px) {
+      body {
+        padding: 20px 15px;
+      }
+      
+      .container {
+        padding: 30px 25px;
+      }
+
+      .video-modal {
+        padding: 25px 12px;
+      }
+
+      .close-modal {
+        width: 38px;
+        height: 38px;
+        font-size: 24px;
+        top: -8px;
+        right: -8px;
+      }
+    }
+
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient-orb ambient-orb-1"></div>
+  <div class="ambient-orb ambient-orb-2"></div>
+  <div class="ambient-orb ambient-orb-3"></div>
+  <div class="noise-overlay"></div>
+  <div class="scanlines"></div>
+
+
+  <div class="container">
+    <div class="logo-container">
+      <div class="logo-wrapper">
+        <img src="https://www.dropbox.com/scl/fi/c1u0uxb92a1o8g49bdwfk/Logo-in-White-BG.jpg?rlkey=geauxw1811vuv63etukgpvyth&st=1th43z68&raw=1" alt="KCS Logo" class="logo-img" />
+      </div>
+    </div>
+    
+    <div class="event-label">Odisha's First Creator Mega Event</div>
+    
+    <div class="logo-mark"></div>
+    
+    <h2>Kalinga Creators<br>Summit 2025</h2>
+
+
+    <div class="event-info">
+      NOVEMBER 09 | BHUBANESWAR
+    </div>
+
+
+    <div class="event-highlights">
+      <div class="highlight-item">
+        <span class="tick">✓</span> Why this event is happening
+      </div>
+      <div class="highlight-item">
+        <span class="tick">✓</span> Who is coming
+      </div>
+      <div class="highlight-item">
+        <span class="tick">✓</span> What you will experience inside
+      </div>
+      <div class="highlight-item">
+        <span class="tick">✓</span> Why you should not miss it
+      </div>
+    </div>
+
+
+    <p class="register-prompt">
+      <strong>REGISTER TO WATCH OUR SHOWCASE TO KNOW EVERYTHING</strong>
+    </p>
+
+
+    <form id="regForm">
+      <div class="input-wrapper">
+        <label for="name">Full Name</label>
+        <input 
+          type="text" 
+          id="name" 
+          placeholder="Enter your full name" 
+          required 
+          autocomplete="name"
+        />
+      </div>
+
+
+      <div class="input-wrapper">
+        <label for="mobile">Mobile Number</label>
+        <input 
+          type="tel" 
+          id="mobile" 
+          placeholder="Enter your mobile number" 
+          required 
+          pattern="[0-9]{10}"
+          autocomplete="tel"
+        />
+      </div>
+
+
+      <div class="input-wrapper">
+        <label for="email">Email Address</label>
+        <input 
+          type="email" 
+          id="email" 
+          placeholder="Enter your email address" 
+          required 
+          autocomplete="email"
+        />
+      </div>
+
+
+      <button type="submit">
+        <span id="btnText">Register Now</span>
+      </button>
+    </form>
+
+
+    <div id="successMessage" class="success-message" style="display: none;">
+      ✓ Registration Confirmed Successfully
+    </div>
+  </div>
+
+
+  <div class="video-modal" id="videoModal">
+    <div class="video-modal-content">
+      <button class="close-modal" id="closeModal">×</button>
+      
+      <div class="video-modal-header">
+        <h3 class="video-modal-title">Kalinga Creators Summit</h3>
+        <p class="video-modal-subtitle">Know Everything About Odisha's First Creator Mega Event</p>
+      </div>
+      
+      <div class="video-wrapper">
+        <iframe 
+          id="vimeoPlayer"
+          src="https://player.vimeo.com/video/1132798038?badge=0&autopause=0&player_id=0&app_id=58479" 
+          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
+          referrerpolicy="strict-origin-when-cross-origin"
+          title="KCS 2025 VIRTUAL SHOWCASE">
+        </iframe>
+      </div>
+
+
+      <div class="cta-section">
+        <h4 class="cta-title">Book Your Passes</h4>
+        <div class="cta-badge">42% OFF for 30 Tickets</div>
+        <p class="cta-price">
+          <strong>₹399</strong><br>
+          Price will increase soon
+        </p>
+        <a href="https://rzp.io/rzp/kalinga-creator-summit" target="_blank" class="cta-button">Click Here To Book Now</a>
+      </div>
+
+
+      <div class="cta-section" style="margin-top: 25px; padding: clamp(22px, 4vw, 32px);">
+        <a href="#" onclick="chatWithTeamKCS(event)" class="cta-whatsapp">Chat with Team KCS</a>
+        
+        <p class="cta-contact">
+          Contact <a href="tel:+918895920451">+91 88959 20451</a> for more details
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="https://player.vimeo.com/api/player.js"></script>
+  <script>
+    // REPLACE THIS WITH YOUR DEPLOYED WEB APP URL
+    const scriptURL = "https://script.google.com/macros/s/AKfycbyp-9ebwjRz2fSp_2Z_5FqmiXnlFrJ2Z5Yn87ICJ9O2iCvIKaNY5X7wtuim9w65vnxxIw/exec";
+
+
+    const form = document.getElementById("regForm");
+    const btn = form.querySelector("button");
+    const btnText = document.getElementById("btnText");
+    const videoModal = document.getElementById("videoModal");
+    const closeModal = document.getElementById("closeModal");
+    const successMessage = document.getElementById("successMessage");
+
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+
+      btn.classList.add('loading');
+      btnText.textContent = 'Processing';
+
+
+      const data = {
+        name: document.getElementById("name").value,
+        mobile: document.getElementById("mobile").value,
+        email: document.getElementById("email").value
+      };
+
+
+      try {
+        const response = await fetch(scriptURL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+
+
+        btn.classList.remove('loading');
+        btnText.textContent = 'Confirmed';
+        successMessage.style.display = 'block';
+        form.reset();
+        
+        setTimeout(() => {
+          videoModal.classList.add('show');
+          document.body.style.overflow = 'hidden';
+          btnText.textContent = 'Register Now';
+        }, 1200);
+
+
+      } catch (error) {
+        console.error('Error:', error);
+        btn.classList.remove('loading');
+        btnText.textContent = 'Confirmed';
+        successMessage.style.display = 'block';
+        
+        setTimeout(() => {
+          videoModal.classList.add('show');
+          document.body.style.overflow = 'hidden';
+          btnText.textContent = 'Register Now';
+        }, 1200);
+      }
+    });
+
+
+    function closeVideoModal() {
+      videoModal.classList.remove('show');
+      document.body.style.overflow = 'auto';
+      
+      const iframe = document.getElementById('vimeoPlayer');
+      const player = new Vimeo.Player(iframe);
+      player.pause();
+    }
+
+
+    // Chat with Team KCS Function with Pre-filled Message
+    function chatWithTeamKCS(event) {
+      event.preventDefault();
+      
+      // Pre-filled message
+      const message = "Hi! I am excited to know about KCS and want to learn more about the Kalinga Creators Summit 2025.";
+      
+      // WhatsApp number
+      const whatsappNumber = "918895920451";
+      
+      // Encode the message for URL
+      const encodedMessage = encodeURIComponent(message);
+      
+      // Create WhatsApp link with pre-filled message
+      const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+      
+      // Open WhatsApp in new tab
+      window.open(whatsappURL, '_blank');
+    }
+
+
+    closeModal.addEventListener('click', closeVideoModal);
+
+
+    videoModal.addEventListener('click', (e) => {
+      if (e.target === videoModal) {
+        closeVideoModal();
+      }
+    });
+
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && videoModal.classList.contains('show')) {
+        closeVideoModal();
+      }
+    });
+
+
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(input => {
+      input.addEventListener('focus', function() {
+        this.parentElement.style.transform = 'translateX(3px)';
+      });
+      
+      input.addEventListener('blur', function() {
+        this.parentElement.style.transform = 'translateX(0)';
+      });
+    });
+  </script>
+
+
+</body>
+</html>
